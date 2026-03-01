@@ -39,7 +39,7 @@ function Sidebar({ open, onClose }) {
     const [history, setHistory] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:8000/api/history')
+        fetch('/api/history')
             .then(r => r.json())
             .then(d => setHistory(d.projects || []))
             .catch(() => { })

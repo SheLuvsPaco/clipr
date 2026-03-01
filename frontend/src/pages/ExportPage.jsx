@@ -16,7 +16,7 @@ export default function ExportPage() {
 
     const fetchExports = async () => {
         try {
-            const res = await fetch(`http://localhost:8000/api/projects/${projectId}/exports`)
+            const res = await fetch(`/api/projects/${projectId}/exports`)
             if (res.ok) {
                 const data = await res.json()
                 setExports(data.exports || [])
@@ -27,16 +27,16 @@ export default function ExportPage() {
     }
 
     const downloadClip = (clipId) => {
-        window.open(`http://localhost:8000/api/projects/${projectId}/exports/${clipId}`, '_blank')
+        window.open(`/api/projects/${projectId}/exports/${clipId}`, '_blank')
     }
 
     const downloadAll = () => {
-        window.open(`http://localhost:8000/api/projects/${projectId}/exports/all.zip`, '_blank')
+        window.open(`/api/projects/${projectId}/exports/all.zip`, '_blank')
     }
 
     const openAssEditor = async (clipId) => {
         try {
-            const res = await fetch(`http://localhost:8000/api/projects/${projectId}/clips/${clipId}/ass`)
+            const res = await fetch(`/api/projects/${projectId}/clips/${clipId}/ass`)
             if (res.ok) {
                 const data = await res.json()
                 setEditingAss({ clipId, content: data.ass_content })
@@ -48,7 +48,7 @@ export default function ExportPage() {
         if (!editingAss) return
         setRerendering(true)
         try {
-            const res = await fetch(`http://localhost:8000/api/projects/${projectId}/clips/${editingAss.clipId}/rerender`, {
+            const res = await fetch(`/api/projects/${projectId}/clips/${editingAss.clipId}/rerender`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ass_content: editingAss.content }),
@@ -142,7 +142,7 @@ export default function ExportPage() {
                             {/* Video preview area */}
                             <div className="aspect-[9/16] bg-[var(--color-bg-primary)] flex items-center justify-center relative max-h-64">
                                 <video
-                                    src={`http://localhost:8000/api/projects/${projectId}/exports/${clipId}`}
+                                    src={`/api/projects/${projectId}/exports/${clipId}`}
                                     className="w-full h-full object-contain"
                                     preload="metadata"
                                 />

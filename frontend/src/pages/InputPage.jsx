@@ -52,7 +52,7 @@ export default function InputPage() {
             }
             formData.append('genre', genre)
 
-            const res = await fetch('http://localhost:8000/api/projects', { method: 'POST', body: formData })
+            const res = await fetch('/api/projects', { method: 'POST', body: formData })
             if (!res.ok) {
                 const data = await res.json()
                 throw new Error(data.detail || 'Failed to create project')

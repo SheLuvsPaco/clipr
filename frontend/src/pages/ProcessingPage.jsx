@@ -26,7 +26,7 @@ export default function ProcessingPage() {
     const [error, setError] = useState(null)
 
     useWebSocket(
-        `ws://127.0.0.1:8000/api/ws/project/${projectId}/processing`,
+        `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/api/ws/project/${projectId}/processing`,
         {
             onMessage: (data) => {
                 if (data.stage === 'complete') {
@@ -49,7 +49,7 @@ export default function ProcessingPage() {
     useEffect(() => {
         const interval = setInterval(async () => {
             try {
-                const res = await fetch(`http://localhost:8000/api/projects/${projectId}`)
+                const res = await fetch(`/api/projects/${projectId}`)
                 if (res.ok) {
                     const data = await res.json()
                     if (data.status === 'export_ready') setDone(true)

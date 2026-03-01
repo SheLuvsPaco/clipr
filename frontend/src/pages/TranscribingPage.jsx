@@ -34,7 +34,7 @@ export default function TranscribingPage() {
     const logEndRef = useRef(null)
 
     useWebSocket(
-        `ws://127.0.0.1:8000/api/ws/project/${projectId}`,
+        `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/api/ws/project/${projectId}`,
         {
             onMessage: (data) => {
                 // Accumulate log entries
@@ -68,7 +68,7 @@ export default function TranscribingPage() {
     useEffect(() => {
         const interval = setInterval(async () => {
             try {
-                const res = await fetch(`http://localhost:8000/api/projects/${projectId}`)
+                const res = await fetch(`/api/projects/${projectId}`)
                 if (res.ok) {
                     const data = await res.json()
                     if (data.status === 'completed' || data.stage === 'done') {

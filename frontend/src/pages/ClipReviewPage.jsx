@@ -53,7 +53,7 @@ export default function ClipReviewPage() {
     const fetchClips = async () => {
         try {
             // Try the job-based endpoint first
-            const res = await fetch(`http://localhost:8000/api/clips/${projectId}`)
+            const res = await fetch(`/api/clips/${projectId}`)
             if (res.ok) {
                 const data = await res.json()
                 dispatch({ type: 'LOAD_CLIPS', clips: data.clips || [] })
@@ -64,7 +64,7 @@ export default function ClipReviewPage() {
 
         // Fallback: try project-based
         try {
-            const res = await fetch(`http://localhost:8000/api/projects/${projectId}/clips`)
+            const res = await fetch(`/api/projects/${projectId}/clips`)
             if (res.ok) {
                 const data = await res.json()
                 dispatch({ type: 'LOAD_CLIPS', clips: data.clips || [] })
@@ -102,7 +102,7 @@ export default function ClipReviewPage() {
             }))
 
         try {
-            const res = await fetch(`http://localhost:8000/api/projects/${projectId}/process`, {
+            const res = await fetch(`/api/projects/${projectId}/process`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ clips: approved }),
