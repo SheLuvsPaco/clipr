@@ -22,3 +22,10 @@ projects/
 *.log
 backend.pid
 backend.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/*.log
+frontend/*.pid

@@ -15,7 +15,7 @@ from config import PROJECTS_DIR, SUPPORTED_EXTENSIONS, MAX_FILE_SIZE_BYTES, PHAS
 from pipeline.job_manager import update_progress, complete_job, fail_job, push_log
 from pipeline.downloader import download_video
 from pipeline.audio import extract_audio, normalize_audio, reduce_noise, is_audio_only
-from pipeline.modal_transcriber import transcribe_audio
+from pipeline.transcriber import transcribe_audio
 from pipeline.postprocessor import postprocess_transcript
 
 logger = logging.getLogger(__name__)

@@ -18,14 +18,10 @@ MAX_FILE_SIZE_GB = 10
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_GB * 1024 * 1024 * 1024  # 10 GB
 
 # ─── Transcription Defaults ──────────────────────────────────
-DEFAULT_MODEL_SIZE = "large-v3-turbo"
+DEFAULT_MODEL_SIZE = "large-v3"
 FALLBACK_MODEL_SIZE = "medium"  # For CPU-only / low-RAM machines
 DEFAULT_LANGUAGE = "en"
 DEFAULT_BEAM_SIZE = 5
-
-# Modal Cloud GPU — Set to True to use Modal GPU for transcription
-# When False, transcription runs locally (can be very slow on CPU)
-USE_MODAL = os.getenv("USE_MODAL", "true").lower() == "true"
 
 # VAD Parameters
 VAD_MIN_SILENCE_MS = 500   # 0.5s silence = chunk boundary
